@@ -105,6 +105,7 @@ setsebool -P httpd_execmem 1
 
 -  Enable TCP port 80 in Inbound Rules configuration for your Web Server EC2 (enable from everywhere 0.0.0.0/0 or from your workstation’s IP).
 -  Try to access from the browser the link to your WordPress
+-  <img width="957" alt="Success" src="https://user-images.githubusercontent.com/104162178/170266220-6bf5ac4c-08ee-451d-8df0-0ed0cae76346.PNG">
 
 
 
