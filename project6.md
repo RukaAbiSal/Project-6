@@ -53,13 +53,10 @@
 <img width="941" alt="UUID" src="https://user-images.githubusercontent.com/104162178/170204293-3747e378-d2a6-4714-83e2-7acfecf30b72.PNG">
 
 - Run sudo vi /etc/fstab to update the content with the UUID information.
-![p8](https://user-images.githubusercontent.com/50557587/140839162-ebd7e311-0997-45c8-9947-02d72da3717f.PNG)
-
 - Test the configuration `sudo mount -a`, if no error message displays then it implies it installations went smoothly.
 - Reload the daemon `sudo systemctl daemon-reload`.
 - Verify your setup by running `df -h`.
 
-![p9](https://user-images.githubusercontent.com/50557587/140840066-c69a5bd8-ee7d-4530-8de9-975d6deb9da8.PNG) 
 
 - Install WordPress, Apache and its dependecies on Webserver EC2 `sudo yum -y update` , `sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json`.
 - Start Apache sudo `systemctl enable httpd` , `sudo systemctl start httpd`.
