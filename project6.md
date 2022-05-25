@@ -10,7 +10,7 @@
 - Create and configure two linux-based virtual servers (EC2 instances in AWS): Webserver and Database.
 - Create 3 Volumes for the Webserver and Database instances respectively with availabilty zone same with what is showing in the instances.
 <img width="898" alt="instances" src="https://user-images.githubusercontent.com/104162178/170193362-12eaa52e-3ffb-4c4c-a405-e5a68330ce94.PNG">
-
+<img width="592" alt="creatingvolumes" src="https://user-images.githubusercontent.com/104162178/170194126-6d76fe94-0cff-404c-a0c5-0862da8b439d.PNG">
 
 - Attach volume to the Volumes created for the Webserver EC2 and Database EC2 ensuring that in the instance slot, you select the instance associated with each instance (Webserver OR Database).
 ![p1](https://user-images.githubusercontent.com/50557587/140830249-e73937d1-de47-454b-9ea1-7e138530f823.PNG)
