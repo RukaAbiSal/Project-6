@@ -52,7 +52,7 @@
 - Run sudo blkid to copy the UUID of the device for both Webserver and Database 
 <img width="941" alt="UUID" src="https://user-images.githubusercontent.com/104162178/170204293-3747e378-d2a6-4714-83e2-7acfecf30b72.PNG">
 
-- Run sudo vi /etc/fstab to update the content with the UUID information.
+- Run  `sudo vi /etc/fstab ` to update the content with the UUID information.
 - Test the configuration `sudo mount -a`, if no error message displays then it implies it installations went smoothly.
 - Reload the daemon `sudo systemctl daemon-reload`.
 - Verify your setup by running `df -h`.
@@ -86,6 +86,7 @@ setsebool -P httpd_execmem 1
 - Run the security script `sudo mysql_secure_installation` which helps to prepare mysql server instance.
 - Run MySQL `sudo mysql -u root -p`
 - Configure the database to work with WordPress.
+- 
 -Run `select user, host from mysql.user` 
 <img width="291" alt="Userhost" src="https://user-images.githubusercontent.com/104162178/170262164-e80deedb-1154-4169-9bbf-b875766de36a.PNG">
 
