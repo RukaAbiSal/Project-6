@@ -56,7 +56,7 @@
 - Test the configuration `sudo mount -a`, if no error message displays then it implies it installations went smoothly.
 - Reload the daemon `sudo systemctl daemon-reload`.
 - Verify your setup by running `df -h`.
-
+<img width="548" alt="AfterFstab" src="https://user-images.githubusercontent.com/104162178/170206142-ce9d66b7-3009-4e58-9eda-9e8f5d902179.PNG">
 
 - Install WordPress, Apache and its dependecies on Webserver EC2 `sudo yum -y update` , `sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json`.
 - Start Apache sudo `systemctl enable httpd` , `sudo systemctl start httpd`.
@@ -86,7 +86,7 @@ setsebool -P httpd_execmem 1
 - Run the security script `sudo mysql_secure_installation` which helps to prepare mysql server instance.
 - Run MySQL `sudo mysql -u root -p`
 - Configure the database to work with WordPress.
-![p10](https://user-images.githubusercontent.com/50557587/140843855-0474f121-94e2-4865-ac41-2c464256895a.PNG)
+-Run `select user, host from mysql.user` 
 
 - In the Database Server EC2 instance, edit my.cnf.d file in /etc folder to include bind-address 0.0.0.0 sudo vi /etc/my.cnf.d and restart mysql `sudo systemctl restart mysqld`.
 ![p11](https://user-images.githubusercontent.com/50557587/140844961-3aa18100-3b86-45b5-9680-9664e85ac166.PNG)
