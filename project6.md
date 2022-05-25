@@ -87,26 +87,25 @@ setsebool -P httpd_execmem 1
 - Run MySQL `sudo mysql -u root -p`
 - Configure the database to work with WordPress.
 -Run `select user, host from mysql.user` 
+<img width="291" alt="Userhost" src="https://user-images.githubusercontent.com/104162178/170262164-e80deedb-1154-4169-9bbf-b875766de36a.PNG">
 
 - In the Database Server EC2 instance, edit my.cnf.d file in /etc folder to include bind-address 0.0.0.0 sudo vi /etc/my.cnf.d and restart mysql `sudo systemctl restart mysqld`.
-![p11](https://user-images.githubusercontent.com/50557587/140844961-3aa18100-3b86-45b5-9680-9664e85ac166.PNG)
-
 - In the Webserver EC2 instance, edit wp-config.php in /var/www/html/ folder to include Database Server MySQL information `sudo vi wp-config.php`.
 
-![p12](https://user-images.githubusercontent.com/50557587/140845911-1fe8bc52-43f1-4ad0-b5dc-d9a84967f53a.PNG)
+<img width="643" alt="wpconfig" src="https://user-images.githubusercontent.com/104162178/170264135-fedee241-7765-4d5d-bb20-5938f2e17437.PNG">
 
 - Restart httpd `sudo systemctl restart http`.
 - Disable the default page of Apache `mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.conf_backup`.
 - Open MYSQL port 3306 on the Database Server EC2, for extra security allow access to the Database server ONLY from the WebServer's IP address.
-![p](https://user-images.githubusercontent.com/50557587/140846896-1bc569d2-4a0d-4040-9b28-6930925705e8.PNG)
 
-- To confirm if Webserver EC2 can communicate with Database EC2, run `sudo mysql -h 172.31.4.234 -u wordpress -p`.
-![p13](https://user-images.githubusercontent.com/50557587/140847063-8284d8cc-ff00-4309-bae2-1d5baa124e58.PNG)
+
+- To confirm if Webserver EC2 can communicate with Database EC2, run `sudo mysql -h 172.31.23.211 -u myuser -p`.
+- 
+<img width="631" alt="Connectfromweb" src="https://user-images.githubusercontent.com/104162178/170265557-e243e25a-dc9b-444a-98a2-7a73479854e3.PNG">
 
 -  Enable TCP port 80 in Inbound Rules configuration for your Web Server EC2 (enable from everywhere 0.0.0.0/0 or from your workstation’s IP).
 -  Try to access from the browser the link to your WordPress
-![p15](https://user-images.githubusercontent.com/50557587/140848108-6bc32df7-9a3c-4e7d-ab6d-ff3b720a7a2b.PNG)
-![p16](https://user-images.githubusercontent.com/50557587/140848147-0f5da57e-49a5-4ed8-a3b7-dec774bd7c7b.PNG)
+
 
 
 
