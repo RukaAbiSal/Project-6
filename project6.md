@@ -27,10 +27,11 @@
 - Run pvcreate on each of the 3 disks as physical volumes to used by LVM `sudo pvcreate /dev/xvdf1 /dev/xvdg1 /dev/xvdh1`.
 - Verify phyical volume has been created successfully running `sudo pvs`.
 
-
 - Run vgcreate command to add all 3 physical volumes to a volume group (VG), namely webdata-VG and database-VG respectively for both instances. 
 - The commands are `sudo vgcreate webdata-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1`, `sudo vgcreate database-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1` respectively.
 - Verify that volume group has been created successfully by running `sudo vgs`.
+
+
 - Use lvcreate utility to create 2 logical volumes for Webserver EC2 and 1 logical volume for Database EC2 respectively.
 - For Webserver EC2, the 2 logical volumes are apps-lv (storing data for website) and logs-lv (storing data for logs). Half of the physical volumes will be allocated to each logical volumes.
 - The commands are `sudo lvcreate -n apps-lv -L 14G webdata-vg`  and `sudo lvcreate -n logs-lv -L 14G webdata-vg` respectively.
