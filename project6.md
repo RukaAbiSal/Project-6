@@ -13,12 +13,10 @@
 <img width="592" alt="creatingvolumes" src="https://user-images.githubusercontent.com/104162178/170194126-6d76fe94-0cff-404c-a0c5-0862da8b439d.PNG">
 
 - Attach volume to the Volumes created for the Webserver EC2 and Database EC2 ensuring that in the instance slot, you select the instance associated with each instance (Webserver OR Database).
-![p1](https://user-images.githubusercontent.com/50557587/140830249-e73937d1-de47-454b-9ea1-7e138530f823.PNG)
-
 - Open the linux terminal to begin configuration, use command `lsblk` to inspect what block devices are attached to both Webserver and Database EC2.
 - Use gdisk to create a single partition on each of the 3 disks `sudo gdisk /dev/xvdf /dev/xvdg /dev/xvdh`.
 - Use lsblk utility to view the newly configured partition on each of the 3 disks. Check screenshot below.
-![p2](https://user-images.githubusercontent.com/50557587/140831068-02f5b866-c270-4883-91e0-e6402ac515cb.PNG) 
+
 
 - Install lvm2 package using `sudo yum install lvm2 -y` and run `sudo lvmdiskscan` to check available partition.
 ![p3](https://user-images.githubusercontent.com/50557587/140831944-f41306d8-a18b-4d78-afa8-4beb0e5522ec.PNG)
