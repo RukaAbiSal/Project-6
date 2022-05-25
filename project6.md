@@ -15,17 +15,18 @@
 - Attach volume to the Volumes created for the Webserver EC2 and Database EC2 ensuring that in the instance slot, you select the instance associated with each instance (Webserver OR Database).
 - Open the linux terminal to begin configuration, use command `lsblk` to inspect what block devices are attached to both Webserver and Database EC2.
 - 
+<img width="305" alt="volumes" src="https://user-images.githubusercontent.com/104162178/170201955-7266ad9c-ed84-454b-96bf-545ce8ea34b6.PNG">
+
 - Use gdisk to create a single partition on each of the 3 disks `sudo gdisk /dev/xvdf /dev/xvdg /dev/xvdh`.
 - Use lsblk utility to view the newly configured partition on each of the 3 disks. Check screenshot below.
 <img width="323" alt="PartitionsCreated" src="https://user-images.githubusercontent.com/104162178/170201128-bc3f1bd3-1ef8-4145-91ae-e2803e20556d.PNG">
 
-- Install lvm2 package using `sudo yum install lvm2 -y` and run `sudo lvmdiskscan` to check available partition.
-![p3](https://user-images.githubusercontent.com/50557587/140831944-f41306d8-a18b-4d78-afa8-4beb0e5522ec.PNG)
+- Install lvm2 package using `sudo yum install lvm2 -y` 
 
 
 - Run pvcreate on each of the 3 disks as physical volumes to used by LVM `sudo pvcreate /dev/xvdf1 /dev/xvdg1 /dev/xvdh1`.
 - Verify phyical volume has been created successfully running `sudo pvs`.
-![p4](https://user-images.githubusercontent.com/50557587/140832000-fb61701c-858a-48a4-83e8-d228bc812694.PNG)
+
 
 - Run vgcreate command to add all 3 physical volumes to a volume group (VG), namely webdata-VG and database-VG respectively for both instances. 
 - The commands are `sudo vgcreate webdata-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1`, `sudo vgcreate database-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1` respectively.
@@ -35,7 +36,7 @@
 - The commands are `sudo lvcreate -n apps-lv -L 14G webdata-vg`  and `sudo lvcreate -n logs-lv -L 14G webdata-vg` respectively.
 - For Database EC2, only one logical volume is created `sudo lvcreate -n db-lv -L 20G database-vg`.
 - Verify logical volume has been created by running sudo lvs.
-![p5](https://user-images.githubusercontent.com/50557587/140835274-cd34a9e9-8d7a-43fd-b8d2-40ba1566920d.PNG)
+
 
 - Format logical volumes with ext4 filesystem for both Webserver and Database EC2.
 - For Webserver EC2 run `sudo mkfs.ext4 /dev/webdata-vg/apps-lv` and `sudo mkfs.ext4 /dev/webdata-vg/logs-lv`, while for Database run `sudo mkfs.ext4 /dev/database-vg/db-lv`.
