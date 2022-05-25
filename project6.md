@@ -30,14 +30,14 @@
 - Run vgcreate command to add all 3 physical volumes to a volume group (VG), namely webdata-VG and database-VG respectively for both instances. 
 - The commands are `sudo vgcreate webdata-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1`, `sudo vgcreate database-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1` respectively.
 - Verify that volume group has been created successfully by running `sudo vgs`.
-
+<img width="369" alt="diskgroup" src="https://user-images.githubusercontent.com/104162178/170204232-8077b5cb-e73b-4a75-8a94-692eb90d2aa7.PNG">
 
 - Use lvcreate utility to create 2 logical volumes for Webserver EC2 and 1 logical volume for Database EC2 respectively.
 - For Webserver EC2, the 2 logical volumes are apps-lv (storing data for website) and logs-lv (storing data for logs). Half of the physical volumes will be allocated to each logical volumes.
 - The commands are `sudo lvcreate -n apps-lv -L 14G webdata-vg`  and `sudo lvcreate -n logs-lv -L 14G webdata-vg` respectively.
 - For Database EC2, only one logical volume is created `sudo lvcreate -n db-lv -L 20G database-vg`.
 - Verify logical volume has been created by running sudo lvs.
-
+<img width="710" alt="Logicalvolumescreated" src="https://user-images.githubusercontent.com/104162178/170202719-e1a039bb-23c4-4b1a-8dce-bcf6fde2d3c4.PNG">
 
 - Format logical volumes with ext4 filesystem for both Webserver and Database EC2.
 - For Webserver EC2 run `sudo mkfs.ext4 /dev/webdata-vg/apps-lv` and `sudo mkfs.ext4 /dev/webdata-vg/logs-lv`, while for Database run `sudo mkfs.ext4 /dev/database-vg/db-lv`.
@@ -50,7 +50,7 @@
 - Restore log files back into /var/log directory `sudo rsync -av /home/recovery/logs/. /var/log`.
 - Update /etc/fstab file to ensure the mount configuration will persist after restart of the server.
 - Run sudo blkid to copy the UUID of the device for both Webserver and Database 
-![p7](https://user-images.githubusercontent.com/50557587/140838828-c69881f7-00ac-43c1-813f-a26aad1746ae.PNG)
+<img width="941" alt="UUID" src="https://user-images.githubusercontent.com/104162178/170204293-3747e378-d2a6-4714-83e2-7acfecf30b72.PNG">
 
 - Run sudo vi /etc/fstab to update the content with the UUID information.
 ![p8](https://user-images.githubusercontent.com/50557587/140839162-ebd7e311-0997-45c8-9947-02d72da3717f.PNG)
